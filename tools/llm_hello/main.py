@@ -2,11 +2,10 @@ import os
 import litellm
 import argparse
 
-llm_key = os.environ["LLM_API_KEY"]
-llm_base_url = os.environ["LLM_BASE_URL"]
 
-
-def main(name: str):
+def main_func(name: str):
+    llm_key = os.environ["LLM_API_KEY"]
+    llm_base_url = os.environ["LLM_BASE_URL"]
     try:
         print("Calling llm")
         response = litellm.completion(
@@ -34,4 +33,4 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--name", type=str, required=True)
     args = parser.parse_args()
-    main(args.name)
+    main_func(args.name)
