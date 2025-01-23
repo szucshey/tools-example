@@ -9,14 +9,13 @@ hello_tool = Tool(
     name="say_hello",
     type="docker",
     image="python:3.12-slim-bullseye",
-    description="Greets person in a random movie star way",
-    args=[Arg(name="name", description="name to say hello to", required=True)],
-    env=["LLM_BASE_URL"],
-    secrets=["LLM_API_KEY"],
+    description="Says hello",
+    args=[Arg(name="name", description="surname", required=True),
+    Arg(name="last_name", description="last name", required=True)],
+    #env=["LLM_BASE_URL"],
+    #secrets=["LLM_API_KEY"],
     content="""
-pip install litellm==1.59.5
-
-python /tmp/main.py --name "{{ .name }}"
+python /tmp/main.py --name "{{ .name }} --last_name {{ .last_name}}"
 """,
     with_files=[
         FileSpec(
